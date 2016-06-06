@@ -6,8 +6,8 @@ def is_permutation(str1, str2):
     """ Check if str1 is an permutation of str2
 
     Complexity:
-        Time  -> O(n): Go through each string once, and the hashmap once
-        Space -> O(n): Create two hashmaps
+        Time  -> O(n): Go through each string once
+        Space -> O(n): Create two Counters (i.e. hashmaps)
     """
     map1 = Counter(str1)
     map2 = Counter(str2)
@@ -28,7 +28,7 @@ def count_permutations(s1, s2):
 
     for i in xrange(len(s1)-window_size+1):
         substring = s1[i:i+window_size]
-        if is_permutation(substring, s2) is True and substring not in permutations:
+        if is_permutation(substring, s2) is True:
             permutations.add(substring)
     
     return len(permutations)
