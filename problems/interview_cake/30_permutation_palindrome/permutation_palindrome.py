@@ -41,6 +41,29 @@ def permuation_palindrome(s):
     return True
 
 
+def permuation_palindrome_set(s):
+    """ Check if any permutation of s is a palindrome using a set
+
+    Complexity:
+        Time  -> O(n): Iterate the list once
+        Space -> O(k): where k is the number of odd frequency chars
+    """
+    s_set = set()
+
+    # Check for all even character frequencies and exactly 1 odd frequency
+    for ch in s:
+        if ch not in s_set:
+            # add it to the set
+            s_set.add(ch)
+        else:
+            # Must be in the set, so remove it
+            s_set.remove(ch)
+
+    # return the whether there are more than 1 element in the set, which
+    # signifies the number of odd freq. chars.
+    return len(s_set) <= 1
+
+
 if __name__ == "__main__":
     #           True     True     False    False    True
     strings = ["civic", "ivicc", "civil", "livci", "raccar"]
