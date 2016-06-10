@@ -37,6 +37,27 @@ def find_deepest_node(root):
             print "Deepest Node is: ", node.value
             return
 
+
+def find_deepest_node_recursive(root, level):
+    if root is None:
+        return (None, level)
+    elif root.left is None and root.right is None:
+        return (root.value, level)
+    else:
+        # find left deepest node
+        left = find_deepest_node_recursive(root.left, level+1)
+
+        # find right deepest node
+        right = find_deepest_node_recursive(root.right, level+1)
+
+        if left[1] > right[1] and left[0] is not None:
+            return left
+        elif right[0] is not None:
+            return right
+        else:
+            return (None, 0)
+
+
 if __name__ == "__main__":
     root = Node(5)
     root.left = Node(3)
@@ -50,4 +71,5 @@ if __name__ == "__main__":
     root.right.right.right.right = Node(1)
 
     find_deepest_node(root)    # Deepest node is 1
+    print find_deepest_node_recursive(root, 0)    # Deepest node is 1, level 4
 
