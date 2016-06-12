@@ -20,6 +20,36 @@ def preorder(root):
         preorder(root.left)
         preorder(root.right)
 
+def preorder_no_recursion(root):
+    """ Print the preorder traversal of a binary tree without recursion
+        * root, left, right
+
+    Complexity:
+        Time  -> O(n): Go through all elements in binary tree
+        Space -> O(n): Local stack
+    """
+    stack = []
+    stack.append(root)
+    visited = set()
+
+
+    while len(stack) > 0:
+        # get an element off the stack
+        node = stack.pop()
+
+        # push the right node, then the left node
+        if node is not None:
+            print node.value
+
+            # add the right child
+            if node.right is not None:
+                stack.append(node.right)
+
+            # add the left child
+            if node.left is not None:
+                stack.append(node.left)
+
+
 def inorder(root):
     """ Print the inorder traversal of a binary tree
         * left, root, right
@@ -68,6 +98,9 @@ if __name__ == "__main__":
 
     print "Preorder:"
     preorder(root)    # 1, 2, 4, 8, 9, 5, 3, 6, 7
+
+    print "Preorder no recursion:"
+    preorder_no_recursion(root)    # 1, 2, 4, 8, 9, 5, 3, 6, 7
 
     print "\nInorder:"
     inorder(root)     # 9, 8, 4, 2, 5, 1, 6, 3, 7
