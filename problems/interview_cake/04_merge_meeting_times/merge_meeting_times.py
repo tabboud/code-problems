@@ -64,3 +64,6 @@ if __name__ == "__main__":
 
     meetings = [(1, 10), (2, 6), (3, 5), (7, 9)]    # [(1, 10)]
     print condense_meeting_times_sorted(meetings)
+
+    meetings = [[1, 4], [6, 7], [2, 5]]
+    print condense_meeting_times_sorted(meetings)   # [(1, 5), (6, 7)]
